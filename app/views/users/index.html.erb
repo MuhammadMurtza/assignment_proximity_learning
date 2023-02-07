@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+<div class="container mx-auto">
+  <div class="card" >
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Personal Data</h6>
+      <% if @users.blank? %>
+        <div id="personal-data" class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+          <%= link_to "Add Personal Data", new_user_path, data: { turbo_frame: 'modal' },class:"btn btn-outline-success"%>
+        </div>
+      <% else %>
+        <div id="users" class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+          <%= render partial: "users/user", collection: @users, as: :user%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="card" >
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Employments</h6>
+      <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+        <div id="employments-data">
+          <%= render partial: "employments/employment", collection: @users&.take&.employments,
+           as: :employment, locals: {editable: true} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

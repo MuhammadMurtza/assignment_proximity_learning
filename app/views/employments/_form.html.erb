@@ -1,0 +1,32 @@
+<%= form_with model: [@user,@employment] do |form| %>
+  <% if @employment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@employment.errors.count, "error") %> prohibited this employment from being saved:</h2>
+      <ul>
+        <% @employment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :employer %>
+    <%= form.text_field :employer, maxlength: 150, required: true, class:"form-control" %>
+  </div>
+  <div>
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date , required: true, class:"form-control"%>
+  </div>
+  <div>
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date , required: true, class:"form-control"%>
+  </div>
+  <div class="modal-footer">
+    <% if @employment&.persisted? %>
+      <button type="button"  data-action="click->edit-modal#hideBeforeRender" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <% else %>
+      <button type="button"  data-action="click->show-modal#hideBeforeRender" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <% end %>
+    <%= form.submit class:"btn btn-primary"%>
+  </div>
+<% end %>

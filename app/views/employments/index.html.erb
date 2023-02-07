@@ -1,0 +1,16 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Employments</h5>
+  </div>
+  <div class="modal-body">
+    <div id="employments">
+      <%= render partial: "employments/employment", collection: @user.employments,
+           as: :employment, locals:{editable: false} %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div id="form-button">
+      <%= render partial: "employments/button", locals:{user: @user} %>
+    </div>
+  </div>
+</div>

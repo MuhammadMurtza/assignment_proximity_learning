@@ -1,0 +1,9 @@
+<%= turbo_frame_tag :modal do %>
+  <div class="modal fade" id="new-data-modal" tabindex="-1" aria-labelledby="newItemRemoteModalLabel" aria-hidden="true" data-controller="edit-modal" data-action="turbo:submit-end->edit-modal#submitEnd">
+    <div class="modal-dialog" role="document">
+      <div id="replaced">
+        <%= render "form", user: @user %>
+      </div>
+    </div>
+  </div>
+<% end %>

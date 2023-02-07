@@ -1,0 +1,67 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"><%= user.persisted? ? "Edit Personal Data": "Add Personal Data" %></h5>
+  </div>
+  <div class="modal-body">
+    <%= form_with(model: user, class: "space-y-6") do |form| %>
+      <% if user.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% user.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= form.label :first_name %>
+          <%= form.text_field :first_name, required: true, maxlength: 25, class:"form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :last_name %>
+          <%= form.text_field :last_name, required: true, maxlength: 50, class:"form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :nick_name %>
+          <%= form.text_field :nick_name, required: false, maxlength: 25, class:"form-control" %>
+        </div>
+      </div>
+      <div class="form-group" data-controller="validator" >
+        <%= form.label :phone_number %>
+        <%= form.text_field :phone_number, required: true, as: :numeric, data: { target: "validator.phonenumber",action: "keyup->validator#phoneMask"} , class: "form-control" %>
+      </div>
+      <div class="form-group" >
+        <%= form.label :email %>
+        <%= form.email_field :email, required: true ,data: { target: "validation.email",action: "keyup->validation#emailVerification"} , class: "form-control" %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= form.label :street %>
+          <%= form.text_field :street, maxlength: 100, class: "form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :city, class:"" %>
+          <%= form.text_field :city, maxlength: 100, class: "form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :state %>
+          <%= form.text_field :state, maxlength: 100, class: "form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :zip, class:"" %>
+          <%= form.text_field :zip, maxlength: 10,class: "form-control" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <% if user.persisted? %>
+          <button type="button"  data-action="click->edit-modal#hideBeforeRender" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <% else %>
+          <button type="button"  data-action="click->show-modal#hideBeforeRender" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <% end %>
+        <%= form.submit class:"btn btn-primary"%>
+      </div>
+    <%end%>
+  </div>
+</div>

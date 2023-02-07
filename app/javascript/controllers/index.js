@@ -4,4 +4,11 @@
 
 import { application } from "./application"
 
+import EditModalController from "./edit_modal_controller"
+application.register("edit-modal", EditModalController)
 
+import ShowModalController from "./show_modal_controller"
+application.register("show-modal", ShowModalController)
+
+import ValidatorController from "./validator_controller"
+application.register("validator", ValidatorController)

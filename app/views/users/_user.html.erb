@@ -1,0 +1,41 @@
+<div id="<%= dom_id user %>">
+  <div class="card text-center">
+    <div class="card-header">
+      <strong>Name:</strong>
+      <%= user.personal_info["first_name"]%>
+      <%= user.personal_info["last_name"] %>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Nick name:</strong>
+        <%= user.personal_info["nick_name"] %>
+      </p>
+      <p class="card-text">
+        <strong>Phone number:</strong>
+        <%= user.personal_info["phone_number"] %>
+      </p>
+      <p class="card-text">
+        <strong>Street:</strong>
+        <%= user.address["street"] %>
+      </p>
+      <p class="card-text">
+        <strong>City:</strong>
+        <%= user.address["city"] %>
+      </p>
+      <p class="card-text">
+        <strong>State:</strong>
+        <%= user.address["state"] %>
+      </p>
+      <p class="card-text">
+        <strong>Zip:</strong>
+        <%= user.address["zip"] %>
+      </p>
+    </div>
+    <div class="card-footer text-muted">
+      <strong>Email:
+        <%= user.email %></strong>
+      <hr>
+      <%= button_to "Edit", edit_user_path(user), method: :get, data: { turbo_frame: 'modal' },  class:"btn btn-outline-warning"%>
+    </div>
+  </div>
+</div>
